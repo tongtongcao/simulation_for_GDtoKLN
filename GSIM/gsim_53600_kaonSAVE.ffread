@@ -1,0 +1,86 @@
+c ---------------------------------------------------------------------------------------------------
+RUNG 53600 1
+c ---------------------------------------------------------------------------------------------------
+c Kinematics (input): kine=1 read BOS file with generated events
+c                     kine=3 simple single particle generator for tests 
+c                     kine=5 read ascii-file in old LUND format
+c                     kine=6 read BOS file with additional background hits 
+c for KINE 3: parameters with PKINE
+c PKINE: id pmin pmax thmin thmax  phimin phimax vx vy vz
+c PKINE  14 0.4  0.5  30.   35.    -10.    10.    0. 0. 0.
+c Kine 1 is default anyway
+KINE 1
+c Auto 1 is default anyway
+AUTO 1
+c ---------------------------------------------------------------------------------------------------
+c Cuts in kinetic energy: 
+c for  gamma,electron,neutral hadr.,charged hadr.,muon
+CUTS   5.e-3 5.e-3 5.e-3 5.e-3 5.e-3
+DCCUTS 1.e-4 1.e-4 1.e-4 1.e-4 1.e-4
+ECCUTS 1.e-4 1.e-4 1.e-4 1.e-4 1.e-4
+SCCUTS 1.e-4 1.e-4 1.e-4 1.e-4 1.e-4
+STCUTS 1.e-4 1.e-4 1.e-4 1.e-4 1.e-4
+c ---------------------------------------------------------------------------------------------------
+c Magnets:  
+c MAGTYPE 0: no field; MAGTYPE 2: torus field from lookup table;
+c MAGTYPE 3: torus and minitorus from lookup table; MAGTYPE 4: only minitorus
+MAGTYPE 2
+c currents or scales (scales w.r.t. max current only if -1<=value<=1)
+c MAGSCALE I_torus I_minitorus
+MAGSCALE -1500.0 0.0
+c Field 2 is default anyway
+FIELD 2
+c ---------------------------------------------------------------------------------------------------
+c Geometry flags (note: if some beamline/target geometry for electron runs
+c                 is turned on, the geometry of photon target/start counter
+c                  might not be correctly initialized.)
+GEOM 'ALL ' 'ST  '
+NOGEOM 'PTG ' 'MINI' 'SOL ' 'IC  ' 'EC1 ' 'FOIL'
+NOMCDATA 'ALL '
+NOHITS 'CC  '
+NOSEC 'MINI' 'OTHE' 'TORU' 'CC  '
+c ---------------------------------------------------------------------------------------------------
+c Target: 
+c every target has a number, e g. TARGET 11: g11; TARGET 12 : frost;  TARGET 13 : HD-ICE
+c and target material e.g. 'VAC ' (vacuum); 'HYDR' or 'LH2' (liq.H2); 
+c     'DEUT' or 'LD2 ' (liq.D2); 'BUTA' (butanol);
+c     'HD  ' (HD-ice);  'HICE' (H2-ice);  'DICE' (D2-ice)
+TARGET 'g11a'
+TGMATE 'DEUT'
+c x,y,z offset of target w.r.t. CLAS center (NO: use STZOFF instead)
+TGPOS 0.0 0.0 0.0
+c note: target length and diameter (except HD-ICE) can be changed via:
+c TGUSER 40.0 2.0  (cell length,diameter in cm)
+c ---------------------------------------------------------------------------------------------------
+c Start counter: STTYPE 0 : old start cntr; STTYPE 1 : new (g11) start cntr.
+STTYPE 1
+c offset of start counter and beam pipe w.r.t. CLAS center
+STZOFF -20.
+c ---------------------------------------------------------------------------------------------------
+c Beam parameters (can be specified via generated MCTK or PART for projectile)
+c or BEAM: E0 E_beam (=photon beam for single energy) 
+c BEAM   4.3  2.0
+c at least E0 should be given ( BEAM 4.3  or  command line option -E0 4.3 )
+BEAM 2.65458 
+c beam position w.r.t nominal z-axis (offset in x,y)
+POSBEAM 0.0 0.0 
+c emittance at target (for smearing of primary vertex w.r.t. beam width)
+c note: if SIGBEAM !=0 primary vertex also smeared along target length
+c       if SIGBEAM <0 beam smearing uses angular emittance of bremsstrahlung
+c SIGBEAM -0.46
+c ---------------------------------------------------------------------------------------------------
+c
+c Flag to save secondaries: (works also interactively: > SAVE )
+c secondaries in MCTK(group#1) and MCVX(group#1):
+c SAVE 'DCAY' 'ALLP' (all particles from decay/absorption processes)
+c SAVE 'DCAY' 'HADR' (all hadrons from decay/absorption processes)
+c    (list of geant3 processes and stopping flags in: bos_mcev.F)
+c SAVE 'ALL ' 'LEVL' 10 (all secondaris up to cascade level 10; max.level=100)
+c SAVE 'ELMG' 'MUON' 'DCAY' (all photon,e^-,e^+ and muons from decay/absorpt.
+c SAVE 'HADR' 0.01   (all hadrons with energy>0.01 GeV)
+c  for 'HADR' 'ELMG' 'MUON'  one can specify the min. energy (as above)
+c default values: Emin_hadr=0.1 GeV; Emin_muon=0.1 GeV; Emin_elmg=0.05 GeV
+c SAVE 'ALL ' 'LEVL' 10 'HADR' 0.001
+c ---------------------------------------------------------------------------------------------------
+STOP
+END

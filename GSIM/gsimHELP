@@ -1,0 +1,174 @@
+
+                           GSIM help
+                           ---------
+
+          ($CLAS_DOC/gsim.hlp, Elliott Wolin, W&M, 26-sep-95)
+
+
+
+
+Differences from standard Geant:
+--------------------------------
+
+ 1.   Default is AUTO 0, not AUTO 1, to ensure accuracy in tracking through
+	magnetic field.
+
+
+
+General command line flags:
+---------------------------
+
+ Flag       Meaning
+ ----       -------
+
+ h          print this help file
+ help       print this help file
+
+ noffread   FFREAD cards NOT read in
+ nofield    no B field used
+ nomate     all materials set to VACUUM
+ nosec      no secondaries generated
+ nohits     no hits or digitizations generated
+ nodigi	    no digitizations generated
+ nobosout   no BOS output file created
+
+ trig n     generate n events
+ kine i     select KINE option i
+
+
+
+Command line flags and env variables for file names:
+----------------------------------------------------
+
+ Flag     Meaning                          Default                 Env variable
+ ----     -------                          -------                 ------------
+ ffread   ffread input file name           read from terminal      GSIM_FFREAD
+ geom     BOS geom input file              (not implemented yet)   GSIM_GEOM
+ mcin     BOS MCIN input kinematics file   mcin.bfp                GSIM_MCIN
+ lizin    Liz format input KINE file name  lizin.txt               GSIM_LIZIN
+ bgrid    B field grid input file name     $CLAS_PARMS/bgrid.fpk   GSIM_BGRID
+ bosout   BOS output file                  gsimout.bfp             GSIM_BOSOUT
+
+
+NOTE:  Command line flags must have a "-" prefix (e.g. gsim_bat -noffread).
+       Command line flags have priority over env variables and FFREAD cards
+
+
+
+FFREAD key definitions:
+------------------------
+
+ KINE	   <=0	      call guser_kine for user-defined kinematics (default)
+             1	      get kinematics from BOS input MCIN file
+             2	      get kinematics from Liz-format file
+             3	      generate Bogdan's kinematics for SDA testing
+
+
+ MAGTYPE   type  field
+
+     type   <0	      call guser_fld to get magnetic field
+	     0	      no B field used
+	     1	      use simple analytic torus
+	     2	      use Bogdan's lookup table, no mini-torus (default)
+	     3	      use Bogdan's lookup table, mini-torus included (not implemented yet)
+
+     field   f        simple analytic torus field strength for type=1 (default is 700.0)
+
+
+ MAGSCALE  f	      scale factor for B field (default 1.)
+
+ IFLGK     0	      secondaries tracked, not stored (default)
+           1          secondaries stored and tracked
+
+ NSTEPMAX  i 	      max number of steps per track (default 10000)
+
+ SLENGMAX  f	      max track length (default 20000.0)
+
+ ZMIN	   f          min track z (default -300.0)
+
+ ZMAX	   f          max track z (default 3000.0)
+
+ ATLEN     ???        attenuation lengths in EC ???
+
+ POISS     ???	      poisson factor in EC ???
+
+ GSIM     'NOMATE' 'NOSEC' 'NOHITS' 'NODIGI' NOBOSOUT'
+
+             'NOMATE'    all materials set to VACUUM
+             'NOSEC'     no secondaries generated 
+             'NOHITS'    no hits generated
+             'NODIGI'    no digitizations generated
+             'NOBOSOUT'  no bos output file generated
+
+
+In the following, valid detector names are:
+
+    'CC' 'DC' 'EC' 'EC1' 'SC' 'ST'
+
+and valid inert material names are:
+     
+    'COIL' 'FOIL'
+
+
+  NOGEOM   det1 ... detn  mat1 ... matn
+	           turn off geom,hits,digi,bosout for list of detectors and
+		   turn off geom for list of inert materials
+
+  NOHITS   det1 ... detn
+	           turn off hits,digi,bosout for list of detectors
+
+  NODIGI   det1 ... detn
+	           turn off digitizations for list of detectors
+
+  NOBOSOUT det1 ... detn
+	           turn off bos output for list of detectors
+
+
+SWIT usage:
+-----------
+
+     swit   value       meaning
+     ----   -----       -------
+
+	1	1	print track info for every track step
+		2	store and draw points for all track steps  (interactive vsn only)
+		3	print, store, and draw all track step info (    "       "    "  )
+
+
+	2   xxxx1	dump material parameters  (call gpmate(0))
+	    xxx1x	dump media parameters     (call gptmed(0))
+	    xx1xx	dump volume parameters    (call gpvolu(0))
+
+
+Notes:
+------
+
+1.  If "noffread" set and KINE input file name specified (via cmd flag 
+    or env var) GSIM will set IKINE appropriately.
+
+2.  If BOS output file generated (default), GSIM will rename existing file 
+    with same file name using GNU-style version numbers.  E.g. if gsimout.bfp
+    exists, it will get renamed to gsimout.bfp.~1~.  Version numbers get
+    incremented in turn.
+
+
+Examples:
+---------
+
+To run GSIM with no ffread keys, using Liz format kinematics file liz.txt,
+with no bos output, and generate 10 events:
+
+	gsim_bat -noffread -lizin liz.txt -nobosout -trig 10
+
+
+==============================================================================
+
+Send questions, comments, bugs reports, etc. to:  
+
+	        Elliott Wolin
+		College of William and Mary
+		804-221-3532
+		wolin@cebaf.gov 
+
+
+This file is $CLAS_DOC/gsim.hlp

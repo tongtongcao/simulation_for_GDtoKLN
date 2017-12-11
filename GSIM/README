@@ -1,0 +1,21 @@
+qIf environment is set up correctly: (loggin in clasg13 and run.. that is tested. Otherwise fix environment)
+
+To run bos file through GSIM
+
+~> source /home/clasg13/env_svn_centos62_64bit
+~> cd /volatile/clas/clasg13/clasg13/nick/
+
+Generated.bos is a file that is produced using the PutinBOS code that reads the generated root file (from gendpi0) and writes the bos file
+ffread card is found in GSIM directory (~/Hyperon/jgen_v3/GSIM/)
+
+~> gsim_bat -ffread gsim_53600.ffread -mcin /volatile/clas/clasg13/nicholas/Hyperon/GSIM/Generated.bos -bosout gsim_file.bos -tg /group/clas/parms/bgrid_T67to33.fpk
+
+To run through gpp
+
+~> gpp -P0x7f -a1.0 -b1.0 -c1.0 -f1.0 -R53600 -s -oinfile InputFile
+
+To Cook
+
+~> user_ana -t ~/Hyperon/jgen_v3/GSIM/mc.tcl
+~> h2root anamonhist
+

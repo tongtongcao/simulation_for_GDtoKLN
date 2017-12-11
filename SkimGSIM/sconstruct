@@ -1,0 +1,13 @@
+#Import the default environment 
+from build_system import environment
+import os.path
+	
+#Create my skim code
+Dependencies = ['mysql', 'cern', 'clas6', 'root']
+Skimmy = environment.env(deps=Dependencies)
+Skimmy.load_dependency(Dependencies)
+Skimmy.Append(CPPPATH = ['.'])
+Skimmy.Append(LIBS = ['eloss', 'DecayUtils'])
+Skimmy.ignore_library_order()
+#Create executable skim_gsim from skim_gsim.cc
+Skimmy.Program('skim_gsim_v2', source='skim_gsim_v2.cc')

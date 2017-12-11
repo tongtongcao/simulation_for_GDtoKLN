@@ -1,0 +1,13 @@
+from build_system import environment
+
+env = environment.env(deps=['clas6', 'root', 'bosio','default_libs'])
+
+env.load_dependency('clas6')
+env.load_dependency('root')
+env.load_dependency('bosio')
+
+env.Append( CPPPATH=['/group/clas/builds/64bit/STABLE/io/bosio/'] )
+
+env.program(
+    target = 'BOSwrite_v1.0',
+    source = ['BOSwrite_v1.0.cc'] )

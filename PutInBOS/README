@@ -1,0 +1,17 @@
+The programs here are to read Laget root files (paw ntuples converted to root using h2root command) and write information in BOS banks.
+
+
+Source environment first 
+~> source /home/clasg13/env_svn_centos62_64bit
+To Compile
+~> scons -j8
+
+For HELP
+~> ./build/bin/BOSwrite_v1.3 -h     
+
+To run
+~> ./build/bin/BOSwrite_v1.3 inputrootfile
+
+Check number of events
+~> countbos rename.bos
+
