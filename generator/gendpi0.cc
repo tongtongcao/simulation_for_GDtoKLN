@@ -853,7 +853,7 @@ int main (int argc, char **argv){
 	      costhetaz=Vprot*Vz/Vprot.Mag();
 
 	      vect_stoxozpy.clear();
-	      vect_stoxozpy=calcSTOxOzPforGPKL(tinW_kl,cmpol,obsstat,vectSTOxOzPforGPKL);
+	      vect_stoxozpy=calcSTOxOzPforGPKL(tinW_kl,cos(cmpol/180*3.141592653),obsstat,vectSTOxOzPforGPKL);
 
 	      sigma=vect_stoxozpy[0];
 	      t=vect_stoxozpy[1];
@@ -1564,7 +1564,7 @@ int main (int argc, char **argv){
 	    costhetaz=Vprot*Vz/Vprot.Mag();
 
 	    vect_stoxozpy.clear();
-	    vect_stoxozpy=calcSTOxOzPforGPKL(tinW_kl,cmpol,obsstat,vectSTOxOzPforGPKL);
+	    vect_stoxozpy=calcSTOxOzPforGPKL(tinW_kl,cos(cmpol/180*3.141592653),obsstat,vectSTOxOzPforGPKL);
 
 	    sigma=vect_stoxozpy[0];
 	    t=vect_stoxozpy[1];
