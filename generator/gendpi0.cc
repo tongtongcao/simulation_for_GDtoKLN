@@ -196,10 +196,10 @@ int main (int argc, char **argv){
   vector<double> vect_cxczpy; // save Cx, Cz and Py calculated by the function "calccxczpy_KL"
   vector<double> vect_stoxozpy; // save Sigma, T, Ox, Oz and P calculated by the function "calcSTOxOzPforGPKL"
 
-  int Nlabel2=0; //Used for setting cirpol for the channel 2
-  int Nlabel8=0; //Used for setting cirpol for the channel 8
-  int Nlabel1=0; //Used for setting linpol for the channel 1
-  int Nlabel5=0; //Used for setting linpol for the channel 5
+  int Nlabel2=0; //Used for the channel 2
+  int Nlabel8=0; //Used for the channel 8
+  int Nlabel1=0; //Used for the channel 1
+  int Nlabel5=0; //Used for the channel 5
   //// Variable defination for polaried cross section of the first step ////
 
   //// Variable defination for the second step ////
@@ -588,7 +588,7 @@ int main (int argc, char **argv){
 	    pRp1 = event_finalpip.GetDecay (0);
 	    pRp2 = event_finalpip.GetDecay (1);
 
-	    if(Nlabel1%2==0) linpol=1;
+	    if(Nlabel1%2==0) linpol=1;  //Total polarized cross section for perp and para are the same, so the number of generated events for perp and para are the same 
 	    else linpol=0;
 
 	    phi=pQp1->Phi();
@@ -800,7 +800,7 @@ int main (int argc, char **argv){
 	      cz=vect_cxczpy[1];
 	      py=vect_cxczpy[2];
 
-	      if(Nlabel2%2==0) cirpol=1;
+	      if(Nlabel2%2==0) cirpol=1; //Total polarized cross section for positive and negative helicity are the same, so the number of generated events for positive and negative helicity are the same
 	      else cirpol=0;
 
 	      if(cirpol==1) ccsval=csval*(1+0.642*costhetax*cx+0.642*costhetaz*cz+0.642*costhetay*py);
@@ -861,10 +861,10 @@ int main (int argc, char **argv){
 	      oz=vect_stoxozpy[3];
 	      py=vect_stoxozpy[4];
 
-	      if(Nlabel2%2==0) linpol=1;
+	      if(Nlabel2%2==0) linpol=1; //Total polarized cross section for perp and para are the same, so the number of generated events for perp and para are the same
 	      else linpol=0;
 
-	      phi=pQp1->Phi();
+	      phi=pQp2->Phi();
 	      if(linpol==1) lcsval=csval*(1-sigma*cos(2*phi)-0.642*costhetay*t*cos(2*phi)+0.642*costhetax*ox*sin(2*phi)+0.642*costhetaz*oz*sin(2*phi)+0.642*costhetay*py);
 	      else lcsval=csval*(1+sigma*cos(2*phi)+0.642*costhetay*t*cos(2*phi)-0.642*costhetax*ox*sin(2*phi)-0.642*costhetaz*oz*sin(2*phi)+0.642*costhetay*py);
 
@@ -1253,7 +1253,7 @@ int main (int argc, char **argv){
 	      
 	    phi=pQp1->Phi();
 	    sigma=calcs_piplusn(vect_spiplusn, beam.E(), cmpol, obsstat); // phi is defined as azimuthal angle of pi in the lab frame
-	    if(linpol==1) lcsval=csval*(1-sigma*cos(2*phi));
+	    if(linpol==1) lcsval=csval*(1-sigma*cos(2*phi)); //Total polarized cross section for perp and para are the same, so the number of generated events for perp and para are the same
 	    else lcsval=csval*(1+sigma*cos(2*phi));
 	      
 	    if(lcsval<ran4l) continue;
@@ -1518,7 +1518,7 @@ int main (int argc, char **argv){
 	    cz=vect_cxczpy[1];
 	    py=vect_cxczpy[2];
 
-	    if(Nlabel8%2==0) cirpol=1;
+	    if(Nlabel8%2==0) cirpol=1; //Total polarized cross section for positive and negative helicity are the same, so the number of generated events for positive and negative helicity are the same
 	    else cirpol=0;
 
 	    if(cirpol==1) ccsval=csval*(1+0.642*costhetax*cx+0.642*costhetaz*cz+0.642*costhetay*py);
@@ -1572,10 +1572,10 @@ int main (int argc, char **argv){
 	    oz=vect_stoxozpy[3];
 	    py=vect_stoxozpy[4];
 
-	    if(Nlabel8%2==0) linpol=1;
+	    if(Nlabel8%2==0) linpol=1; //Total polarized cross section for perp and para are the same, so the number of generated events for perp and para are the same
 	    else linpol=0;
 
-	    phi=pQp1->Phi();
+	    phi=pQp2->Phi();
 	    if(linpol==1) lcsval=csval*(1-sigma*cos(2*phi)-0.642*costhetay*t*cos(2*phi)+0.642*costhetax*ox*sin(2*phi)+0.642*costhetaz*oz*sin(2*phi)+0.642*costhetay*py);
 	    else lcsval=csval*(1+sigma*cos(2*phi)+0.642*costhetay*t*cos(2*phi)-0.642*costhetax*ox*sin(2*phi)-0.642*costhetaz*oz*sin(2*phi)+0.642*costhetay*py);
 
