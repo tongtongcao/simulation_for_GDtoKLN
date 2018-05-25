@@ -31,7 +31,7 @@ JGenFermiMomentum::JGenFermiMomentum() {
 	assign_array(d, 0.23135193E-01, -0.85604572E+00,  0.56068193E+01, -0.69462922E+02,  0.41631118E+03, -0.12546621E+04, 
 				 0.12387830E+04,  0.33739172E+04, -0.13041151E+05, 0.19512524E+05, 0.0, 0.0, 0.0);
 	
-	std::cout << c1[0] << std::endl;
+	//std::cout << c1[0] << std::endl;
 	
 	double alph, m0;
 	double sum_c, sum_d1, sum_d2, sum_d3;

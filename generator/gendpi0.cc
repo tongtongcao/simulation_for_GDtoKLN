@@ -349,7 +349,7 @@ int main (int argc, char **argv){
     //Just channel 2 includes decay. For channels wihtout decay, pDp1 and pDp2 are NULL
     pDp1 = NULL; pDp2 = NULL;
     //For quasi-free channel 8 and 9, only the first step is involved
-    pRp1 = NULL; pRp2 = NULL; pSbeam=NULL; pSW=NULL; Sweight=0;
+    pRp1 = NULL; pRp2 = NULL; Sweight=0;
     //// Polarization Setup ////
 
     //// Cross section setup for the second step ////
@@ -579,6 +579,11 @@ int main (int argc, char **argv){
 	  Sbeam=*pQp1;
 	  SW = Sbeam + Starget;
 	  StinW_KL=1000*SW.Mag();
+
+	  pQp1->Print();
+	  Sbeam.Print();
+	  pSbeam = &Sbeam;
+	  pSbeam->Print();
 
 	  Sbeam_recalc.SetXYZM(Sbeam.Px(),Sbeam.Py(),Sbeam.Pz(),0.13975018);
 	  StinW_KL_recalc=1000*(Sbeam_recalc+Starget).Mag();
