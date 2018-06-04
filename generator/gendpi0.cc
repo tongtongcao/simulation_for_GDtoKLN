@@ -597,7 +597,7 @@ int main (int argc, char **argv){
 	    else linpol=0;
 
 	    phi=pQp1->Phi();
-	    sigma=calcs_pin(vect_spin, beam.E(), cmpol, obsstat); // phi is defined as azimuthal angle of pi in the lab frame
+	    sigma=calcs_pin(vect_spin, beam.E()*1000, cmpol, obsstat); // phi is defined as azimuthal angle of pi in the lab frame
 	    if(linpol==1) lcsval=csval*(1-sigma*cos(2*phi));
 	    else lcsval=csval*(1+sigma*cos(2*phi));
 
@@ -1257,7 +1257,7 @@ int main (int argc, char **argv){
 	    else linpol=0;
 	      
 	    phi=pQp1->Phi();
-	    sigma=calcs_piplusn(vect_spiplusn, beam.E(), cmpol, obsstat); // phi is defined as azimuthal angle of pi in the lab frame
+	    sigma=calcs_piplusn(vect_spiplusn, beam.E()*1000, cmpol, obsstat); // phi is defined as azimuthal angle of pi in the lab frame
 	    if(linpol==1) lcsval=csval*(1-sigma*cos(2*phi)); //Total polarized cross section for perp and para are the same, so the number of generated events for perp and para are the same
 	    else lcsval=csval*(1+sigma*cos(2*phi));
 	      
