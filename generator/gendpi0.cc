@@ -400,7 +400,7 @@ int main (int argc, char **argv){
 	// Differential cross section : Calculate w and theta firstly, and then obtain differential cross section //
 	if(rm == "diff" || rm == "same"){
 	  ran3 = 30.9*randomNum.Rndm(); // For unpolarized differential cross section, 30.9 is the maximum value of unpolarized differential cross section table for the first step of pi0 mediated channel, and also is maximum for channels 1, 2, 3, 4, 5, 8 and 9 
-	  ran4l = 24*randomNum.Rndm(); // For linearly polarized differential cross section, 24 is the maximum value of linear polarized differential cross section for the first step of pi0 mediated channel, and also is maximum for channel 1,2,5 and 8
+	  ran4l = 33*randomNum.Rndm(); // For linearly polarized differential cross section, 33 is the maximum value of linear polarized differential cross section for the first step of pi0 mediated channel, and also is maximum for channel 1,2,5 and 8
 	}
 
 	temp1 = *pQp1;
@@ -580,11 +580,6 @@ int main (int argc, char **argv){
 	  SW = Sbeam + Starget;
 	  StinW_KL=1000*SW.Mag();
 
-	  pQp1->Print();
-	  Sbeam.Print();
-	  pSbeam = &Sbeam;
-	  pSbeam->Print();
-
 	  Sbeam_recalc.SetXYZM(Sbeam.Px(),Sbeam.Py(),Sbeam.Pz(),0.13975018);
 	  StinW_KL_recalc=1000*(Sbeam_recalc+Starget).Mag();
 
@@ -698,7 +693,7 @@ int main (int argc, char **argv){
 	}
 	else if(rm == "same"){
 	  ran3 = 30.9*randomNum.Rndm(); // For unpolarized differetial cross section, 30.9 is the maximum value of unpolarized cross section table for the first step of channels 1, 2, 3, 4, 5, 8 and 9
-	  ran4l = 24*randomNum.Rndm(); // For linearly polarized differetial cross section, 24 is the maximum value of linearly polarized differential cross section for channels 1, 2, 5 and 8
+	  ran4l = 33*randomNum.Rndm(); // For linearly polarized differetial cross section, 33 is the maximum value of linearly polarized differential cross section for channels 1, 2, 5 and 8
 	}
 
 	ran4c = 0.58*randomNum.Rndm(); // For circularly polarized differetial cross section, 0.58 is the maximum value of circularly polarized diffrential cross section for the first step of Kn rescattering
@@ -1061,11 +1056,11 @@ int main (int argc, char **argv){
 	// Differential cross section : Calculate w and theta firstly, and then obtain differential cross section //
 	if(rm == "diff"){
 	  ran3 = 24.8*randomNum.Rndm(); // For unpolarized differetial cross section, 24.8 is the maximum value of unpolarized cross section table for the first step of pi+ mediated
-	  ran4l = 23*randomNum.Rndm(); // For linearly polarized differetial cross section, 23 is the maximum value of linearly polarizied differential cross section table for the first step of pi+ mediated
+	  ran4l = 29*randomNum.Rndm(); // For linearly polarized differetial cross section, 29 is the maximum value of linearly polarizied differential cross section table for the first step of pi+ mediated
 	}
 	else if(rm == "same"){
 	  ran3 = 30.9*randomNum.Rndm(); // For unpolarized differetial cross section, 30.9 is the maximum value of unpolarized cross section table for the first step of all channels
-	  ran4l = 24*randomNum.Rndm(); // For linearly polarized differetial cross section, 24 is the maximum value of linearly polarized differential cross section for channels 1, 2, 5 and 8
+	  ran4l = 33*randomNum.Rndm(); // For linearly polarized differetial cross section,  is the maximum value of linearly polarized differential cross section for channels 1, 2, 5 and 8
 	}
 
 	temp1 = *pQp1;
@@ -1258,6 +1253,7 @@ int main (int argc, char **argv){
 	      
 	    phi=pQp1->Phi();
 	    sigma=calcs_piplusn(vect_spiplusn, beam.E()*1000, cmpol, obsstat); // phi is defined as azimuthal angle of pi in the lab frame
+
 	    if(linpol==1) lcsval=csval*(1-sigma*cos(2*phi)); //Total polarized cross section for perp and para are the same, so the number of generated events for perp and para are the same
 	    else lcsval=csval*(1+sigma*cos(2*phi));
 	      
@@ -1438,7 +1434,7 @@ int main (int argc, char **argv){
 	}
 	else if(rm == "same"){
 	  ran3 = 30.9*randomNum.Rndm(); // For unpolarized differetial cross section, 30.9 is the maximum value of unpolarized cross section table for the first step of all channels
-	  ran4l = 24*randomNum.Rndm(); // For linearly polarized differetial cross section, 24 is the maximum value of linearly polarized differential cross section for channels 1, 2, 5 and 8
+	  ran4l = 33*randomNum.Rndm(); // For linearly polarized differetial cross section, 33 is the maximum value of linearly polarized differential cross section for channels 1, 2, 5 and 8
 	}
 
 
@@ -1962,7 +1958,6 @@ void readcxczpy_kl(string filename, double e_left[16][10], double e_right[16][10
 
 //// Function "calccxczpy_kl" to calculate cx, cz and py for gamma+p -> kaon+Lambda ////
 vector<double> calccxczpy_kl(double e, double ctk, int &obs_status, double e_left[16][10], double e_right[16][10], double e_aver[16][10], double ctk_left[16][10], double ctk_right[16][10], double ctk_aver[16][10], double cx[16][10], double cz[16][10], double py[16][10]){
-  //ifstream infile("obs_kl.txt");
   const int ebinnum=16;
   const int ctkbinnum=10;
   double calc_cx,calc_cz,calc_py;
